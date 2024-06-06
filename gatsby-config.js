@@ -5,7 +5,7 @@ module.exports = {
   pathPrefix: "/leloop",
   siteMetadata: {
     title: `LeLoop`,
-    // siteUrl: `https://www.yourdomain.tld`
+    siteUrl: `https://deeptimahesh.github.io`
   },
   plugins: ["gatsby-plugin-sitemap", "gatsby-plugin-mdx", "gatsby-plugin-sharp", {
     resolve: 'gatsby-source-filesystem',

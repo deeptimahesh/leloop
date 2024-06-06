@@ -20,22 +20,22 @@ export default function BlogPostsTemplate({ data }) {
   }, {})
 
   // Parse the HTML content to separate answers
-  const parseAnswers = (html) => {
-    const parsedAnswers = {}
-    const parser = new DOMParser()
-    const doc = parser.parseFromString(html, 'text/html')
-    const headings = doc.querySelectorAll('h3')
-    headings.forEach((heading, index) => {
-      let nextElement = heading.nextElementSibling
-      let answerHTML = ''
-      while (nextElement && nextElement.tagName !== 'H3') {
-        answerHTML += nextElement.outerHTML
-        nextElement = nextElement.nextElementSibling
-      }
-      parsedAnswers[`Question ${index + 1}`] = answerHTML
-    })
-    return parsedAnswers
-  }
+  // const parseAnswers = (html) => {
+  //   const parsedAnswers = {}
+  //   const parser = new DOMParser()
+  //   const doc = parser.parseFromString(html, 'text/html')
+  //   const headings = doc.querySelectorAll('h3')
+  //   headings.forEach((heading, index) => {
+  //     let nextElement = heading.nextElementSibling
+  //     let answerHTML = ''
+  //     while (nextElement && nextElement.tagName !== 'H3') {
+  //       answerHTML += nextElement.outerHTML
+  //       nextElement = nextElement.nextElementSibling
+  //     }
+  //     parsedAnswers[`Question ${index + 1}`] = answerHTML
+  //   })
+  //   return parsedAnswers
+  // }
 
   return (
     <div>
@@ -56,7 +56,7 @@ export default function BlogPostsTemplate({ data }) {
                     <li key={index}>
                       <p>{question}</p>
                       {answers.map(answer => {
-                        const parsedAnswers = parseAnswers(answer.html)
+                        const parsedAnswers = answer.html
                         return (
                           <div key={answer.id}>
                             <strong>{answer.frontmatter.name}:</strong>
