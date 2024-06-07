@@ -3,3 +3,7 @@
 h1, h2, h3 {
     color: #333;
 }
+
+.gatsby-resp-image-image {
+    float: right;
+}

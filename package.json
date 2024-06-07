@@ -13,10 +13,11 @@
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
+    "deploy": "gatsby build --prefix-paths && gh-pages -b gh-pages -d public -f"
   },
   "dependencies": {
     "@mdx-js/react": "^3.0.1",
+    "firebase": "^10.12.2",
     "gatsby": "^5.13.5",
     "gatsby-cli": "^5.13.3",
     "gatsby-plugin-mdx": "^5.13.1",
