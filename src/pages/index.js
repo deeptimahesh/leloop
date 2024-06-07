@@ -80,7 +80,7 @@ const badgeStyle = {
 const links = [
   {
     text: "Issue 1",
-    url: "/blog/issue-1/",
+    url: "/leloop/blog/issue-1/",
     badge: true,
     description:
       "Testing dummy first issue ripped off from last month.",

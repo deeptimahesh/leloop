@@ -1,4 +1,4 @@
-import * as React from "react"
+import React, { useEffect, useState } from "react"
 import { graphql } from "gatsby"
 import "../styles/styles.css"
 
@@ -19,23 +19,40 @@ export default function BlogPostsTemplate({ data }) {
     return acc
   }, {})
 
-  // Parse the HTML content to separate answers
-  const parseAnswers = (html) => {
-    const parsedAnswers = {}
-    const parser = new DOMParser()
-    const doc = parser.parseFromString(html, 'text/html')
-    const headings = doc.querySelectorAll('h3')
-    headings.forEach((heading, index) => {
-      let nextElement = heading.nextElementSibling
-      let answerHTML = ''
-      while (nextElement && nextElement.tagName !== 'H3') {
-        answerHTML += nextElement.outerHTML
-        nextElement = nextElement.nextElementSibling
+  // State to hold parsed answers
+  const [parsedAnswers, setParsedAnswers] = useState({})
+
+  useEffect(() => {
+    // Function to parse HTML content to separate answers
+    const parseAnswers = (html) => {
+      if (typeof window !== "undefined") {
+        const parsedAnswers = {}
+        const parser = new DOMParser()
+        const doc = parser.parseFromString(html, 'text/html')
+        const headings = doc.querySelectorAll('h3')
+        headings.forEach((heading, index) => {
+          let nextElement = heading.nextElementSibling
+          let answerHTML = ''
+          while (nextElement && nextElement.tagName !== 'H3') {
+            answerHTML += nextElement.outerHTML
+            nextElement = nextElement.nextElementSibling
+          }
+          parsedAnswers[`Question ${index + 1}`] = answerHTML
+        })
+        return parsedAnswers
       }
-      parsedAnswers[`Question ${index + 1}`] = answerHTML
+      return {}
+    }
+
+    // Parse answers for each post
+    const newParsedAnswers = {}
+    Object.keys(groupedPosts).forEach(slug => {
+      groupedPosts[slug].answers.forEach(answer => {
+        newParsedAnswers[answer.id] = parseAnswers(answer.html)
+      })
     })
-    return parsedAnswers
-  }
+    setParsedAnswers(newParsedAnswers)
+  }, [groupedPosts])
 
   return (
     <div>
@@ -56,13 +73,13 @@ export default function BlogPostsTemplate({ data }) {
                     <li key={index}>
                       <p>{question}</p>
                       {answers.map(answer => {
-                        const parsedAnswers = parseAnswers(answer.html)
-                        return (
+                        const answerHtml = parsedAnswers[answer.id]?.[`Question ${index + 1}`]
+                        return answerHtml ? (
                           <div key={answer.id}>
                             <strong>{answer.frontmatter.name}:</strong>
-                            <div dangerouslySetInnerHTML={{ __html: parsedAnswers[`Question ${index + 1}`] }} />
+                            <div dangerouslySetInnerHTML={{ __html: answerHtml }} />
                           </div>
-                        )
+                        ) : null
                       })}
                     </li>
                   ))}
