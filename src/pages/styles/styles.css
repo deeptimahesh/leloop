@@ -1,9 +1,164 @@
-/* src/styles/styles.css */
+/* Base page styles */
+body {
+color: #232129;
+padding: 96px;
+font-family: -apple-system, Roboto, sans-serif, serif;
+}
 
+/* Headings */
 h1, h2, h3 {
-    color: #333;
+color: #333333;
 }
 
-.gatsby-resp-image-image {
-    float: right;
+h1 {
+margin-top: 0;
+margin-bottom: 64px;
+max-width: 320px;
+font-size: 3rem;
+font-weight: bold;
 }
+
+h2 {
+margin-bottom: 48px;
+font-size: 2.25rem;
+}
+
+h3 {
+margin-bottom: 32px;
+font-size: 1.75rem;
+}
+
+/* Accent for headings */
+h1 span {
+color: #663399; /* Accent color */
+}
+
+/* Paragraphs */
+p {
+margin-bottom: 48px;
+font-size: 1.125rem; /* Slightly larger than normal text */
+line-height: 1.6;
+color: #555555; /* Softer text color for better readability */
+}
+
+/* Code blocks */
+code {
+color: #8A6534;
+padding: 4px;
+background-color: #FFF4DB;
+font-size: 1.25rem;
+border-radius: 4px;
+}
+
+/* Lists */
+ul {
+margin-bottom: 96px;
+padding-left: 0;
+list-style-type: none;
+}
+
+li {
+font-weight: 300;
+font-size: 24px;
+max-width: 560px;
+margin-bottom: 30px;
+}
+
+/* Links */
+a {
+color: #8954A8;
+font-weight: bold;
+font-size: 16px;
+text-decoration: none;
+vertical-align: 5%;
+transition: color 0.3s ease;
+}
+
+a:hover {
+color: #663399;
+}
+
+/* Descriptions under links */
+p.description {
+color: #232129;
+font-size: 14px;
+margin-top: 10px;
+margin-bottom: 0;
+line-height: 1.25;
+}
+
+/* Badges */
+.badge {
+color: #fff;
+background-color: #088413;
+border: 1px solid #088413;
+font-size: 11px;
+font-weight: bold;
+letter-spacing: 1px;
+border-radius: 4px;
+padding: 4px 6px;
+display: inline-block;
+position: relative;
+top: -2px;
+margin-left: 10px;
+line-height: 1;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+body {
+    padding: 48px;
+}
+
+h1 {
+    font-size: 2.25rem;
+    margin-bottom: 48px;
+}
+
+p {
+    font-size: 1rem;
+    margin-bottom: 36px;
+}
+
+li {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+ul {
+    margin-bottom: 48px;
+}
+}
+
+/* General image styling */
+img {
+    display: block;               /* Makes the image a block element */
+    margin: 1.5rem auto;           /* Centers the image horizontally and adds spacing */
+    max-width: 100%;               /* Ensures images are responsive and don't exceed the container width */
+    height: auto;                  /* Maintains aspect ratio */
+    border-radius: 8px;            /* Softens the corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for depth */
+  }
+  
+  /* Optional: To limit image width for larger screens */
+  img {
+    max-width: 100%;                /* Limit image width to 80% of the container */
+  }
+  
+  /* For floating the images (if desired) */
+  img.float-left {
+    float: left;                   /* Floats the image to the left */
+    margin: 1.5rem 1.5rem 1.5rem 0; /* Adds spacing around the image */
+  }
+  
+  img.float-right {
+    float: right;                  /* Floats the image to the right */
+    margin: 1.5rem 0 1.5rem 1.5rem; /* Adds spacing around the image */
+  }
+  
+  /* Clearfix to avoid issues with floated images */
+  .clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+  }

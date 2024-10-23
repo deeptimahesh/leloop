@@ -23,6 +23,8 @@ module.exports = {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 590,
+              linkImagesToOriginal: false, // Prevents linking images to the original
+              pathPrefix: "/leloop",
             },
           },
         ],
