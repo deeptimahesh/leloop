@@ -1,0 +1,17 @@
+backend:
+  name: git-gateway
+  branch: main  # Use the branch you’re deploying from
+
+media_folder: static/images   # Where uploaded images will go
+public_folder: /images        # Public URL for uploaded images
+
+collections:
+  - name: "content"
+    label: "Content"
+    folder: "src/content"     # Where your markdown files are stored
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Body", name: "body", widget: "markdown" }
